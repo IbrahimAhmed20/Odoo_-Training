@@ -1,0 +1,116 @@
+<odoo>
+  <data>                
+
+ <record id="edit_project_view_form_custom" model="ir.ui.view">
+    <field name="name">project.project.form.custom</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+
+        <!-- Add button to header -->
+        <xpath expr="//form/header" position="inside">
+            <button name="action_open_create_lead_wizard"
+                    type="object"
+                    string="Create Lead"
+                    class="oe_highlight"
+                    icon="fa-plus"/>
+        </xpath>
+
+        <!-- Add field after label_tasks -->
+        <xpath expr="//field[@name='label_tasks']" position="after">
+            <field name="customer_id" string="Customer"/>
+        </xpath>
+
+        <!-- Add worked_days after date_start -->
+        <xpath expr="//field[@name='date_start']" position="after">
+            <field name="worked_days" string="Worked Days" readonly="1"/>
+        </xpath>
+
+        <!-- Add age field inside settings page -->
+        <xpath expr="//page[@name='settings']" position="inside">
+            <group>
+                <field name="age" string="Age"/>
+            </group>
+        </xpath>
+
+    </field>
+</record>
+
+ <record id="view_project_lead_wizard_form" model="ir.ui.view">
+        <field name="name">project.lead.wizard.form</field>
+        <field name="model">project.lead.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create New Lead">
+                <group>
+                    <field name="name"/>
+                </group>
+                <footer>
+                    <button name="action_create_lead"
+                            type="object"
+                            string="Create"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+       
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="crm_custom.list">
+      <field name="name">crm_custom list</field>
+      <field name="model">crm_custom.crm_custom</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="crm_custom.action_window">
+      <field name="name">crm_custom window</field>
+      <field name="res_model">crm_custom.crm_custom</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="crm_custom.action_server">
+      <field name="name">crm_custom server</field>
+      <field name="model_id" ref="model_crm_custom_crm_custom"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="crm_custom" id="crm_custom.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="crm_custom.menu_1" parent="crm_custom.menu_root"/>
+    <menuitem name="Menu 2" id="crm_custom.menu_2" parent="crm_custom.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="crm_custom.menu_1_list" parent="crm_custom.menu_1"
+              action="crm_custom.action_window"/>
+    <menuitem name="Server to list" id="crm_custom" parent="crm_custom.menu_2"
+              action="crm_custom.action_server"/>
+-->
+  </data>
+</odoo>
