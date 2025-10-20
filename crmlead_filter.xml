@@ -1,0 +1,19 @@
+
+<odoo>
+    <record id="view_crm_case_opportunities_filter_inherit_custom" model="ir.ui.view">
+        <field name="name">crm.lead.filter.admin.demo</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <!-- add admin & demo to search _filter -->
+            <xpath expr="//search" position="inside">
+                <filter string="Admin"
+                        name="admin"
+                        domain="[('user_id', '=', 2)]" />
+                <filter string="Demo"
+                        name="demo"
+                        domain="[('user_id', '=', 6)]" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

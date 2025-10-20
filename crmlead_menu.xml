@@ -1,0 +1,41 @@
+
+<odoo>
+
+    <!-- Action: Admin Leads -->
+    <record id="action_admin_leads" model="ir.actions.act_window">
+        <field name="name">Admin Leads</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!-- Example: show leads assigned to user ID 2 -->
+        <field name="domain">[('user_id', '=', 2)]</field>
+    </record>
+
+    <!-- Action: Demo Leads -->
+    <record id="action_demo_leads" model="ir.actions.act_window">
+        <field name="name">Demo Leads</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!-- Example: show leads assigned to user ID6 -demo -->
+        <field name="domain">[('user_id', '=', 6)]</field>
+    </record>
+
+    <!-- Main Menu: Sales CRM Lead -->
+    <menuitem id="menu_sales_crm_lead_root"
+              name="Sales CRM Lead"
+              parent="crm.crm_menu_root"/>
+              s
+    <!-- Submenu: Admin -->
+    <menuitem id="menu_sales_crm_lead_admin"
+              name="Admin"
+              parent="menu_sales_crm_lead_root"
+              action="action_admin_leads"/>>
+              
+
+    <!-- Submenu: Demo -->
+    <menuitem id="menu_sales_crm_lead_demo"
+              name="Demo"
+              parent="menu_sales_crm_lead_root"
+              action="action_demo_leads" />>
+              
+
+</odoo>
