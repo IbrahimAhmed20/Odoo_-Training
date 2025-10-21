@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_create_lead_wizard,create.project.lead.wizard,model_project_lead_wizard,base.group_user,1,1,1,1
+access_crm_lead_user,crm.lead access for User,crm.model_crm_lead,crm_custom.crm_lead_group_user,1,0,0,0
+access_crm_lead_manager,crm.lead access for Manager,crm.model_crm_lead,crm_custom.crm_lead_group_manager,1,1,1,1
