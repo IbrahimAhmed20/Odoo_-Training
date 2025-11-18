@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from . import crm_lead
-from . import project_custom
-from . import create_lead_wizard
+from . import controllers
+from . import api_test
