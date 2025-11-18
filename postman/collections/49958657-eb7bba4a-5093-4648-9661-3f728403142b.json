@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "49958657-eb7bba4a-5093-4648-9661-3f728403142b",
+		"name": "api_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create lead",
+			"id": "49958657-2abc7b00-62f5-4007-9e4c-d3d245e9bfcf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"params\": {\n    \"name\": \"customer_name\",\n    \"email\": \"customer.com\",\n    \"phone\": \"01187879990\" ,\n    \"user_test\": \"admin\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8017/api/create_lead",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8017",
+					"path": [
+						"api",
+						"create_lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update lead",
+			"id": "49958657-196882c1-662e-4637-9466-b5a9881e76e6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"params\": {\n    \"id\": \"84\",\n    \"phone\": \"01145469990\",\n    \"email_from\": \"ibrahim.com\",\n    \"stage_id\" : 2\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8017/api/update_lead",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8017",
+					"path": [
+						"api",
+						"update_lead"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"id": "49958657-91040603-0a72-41e5-8f50-cc4f76e87a99",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"params\": {\n    \"db\": \"test_17\",\n    \"login\": \"admin\",\n    \"password\": \"admin\"\n  }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8017/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8017",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
