@@ -1,0 +1,48 @@
+<odoo>
+    <!-- Estate Property Report Action -->
+    <record id="action_property_report" model="ir.actions.report">
+        <field name="name">Estate Property Report</field>
+        <field name="model">estate.property</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">estate_manager.report_estate_property_template</field>
+        <field name="report_file">estate_manager.report_estate_property_template</field>
+        <field name="binding_model_id" ref="model_estate_property"/>
+        <field name="binding_type">report</field>
+    </record>
+    <!-- Estate Property Report Template -->
+<template id="report_estate_property_template">
+    <!-- Call external layout for consistency across reports -->
+    <t t-call="web.external_layout">
+        <main>
+            <div class="page">
+                <h2>Estate Property Report</h2>
+                
+                <!-- Loop through all documents (properties) passed to the template -->
+                <t t-foreach="docs" t-as="doc">
+                    <div style="margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+                        <!-- Display property details -->
+                        <p><strong>Name:</strong> <t t-esc="doc.name or 'No Name'"/></p>
+                        <p><strong>Property Code:</strong> <t t-esc="doc.property_code or 'No Code'"/></p>
+                        <p><strong>Expected Price:</strong> <t t-esc="doc.expected_price or 'No Price'"/></p>
+                        <p><strong>Available on Web:</strong> <t t-esc="doc.available_on_web and 'Yes' or 'No'"/></p>
+                        <p><strong>Sales Agent:</strong> <t t-esc="doc.sales_agent_id.name or 'No Sales Agent'"/></p>
+                        <p><strong>Creation Date:</strong> <t t-esc="doc.creation_date or 'No Date'"/></p>
+                        <p><strong>Sales State:</strong> <t t-esc="doc.sales_state or 'No State'"/></p>
+                        <p><strong>Property Type:</strong> <t t-esc="doc.property_type_id.name or 'No Property Type'"/></p>
+                        <p><strong>Commission Amount:</strong> <t t-esc="doc.commission_amount or 'No Commission'"/></p>
+                    </div>
+                </t>
+            </div>
+        </main>
+        
+        <!-- Footer with Page Number and Current Time -->
+        <div class="footer">
+            <p style="text-align: center; font-size: 12px; padding-top: 20px;">
+                <span>Page <span t-esc="page_number"/> of <span t-esc="page_count"/> </span> |
+                <span>Generated on: <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/></span>
+            </p>
+        </div>
+    </t>
+</template>
+
+</odoo>

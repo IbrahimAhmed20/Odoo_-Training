@@ -1,0 +1,46 @@
+
+<odoo>
+    <data>
+
+        <!-- Security Group "Property Manager" -->
+        <record id="group_property_manager" model="res.groups">
+            <field name="name">Property Manager</field>
+        </record>
+
+        <!-- Read and Write Access Rights for "User" on estate.property -->
+        <record id="estate_property_user_access" model="ir.model.access">
+            <field name="name">estate.property user access</field>
+            <field name="model_id" ref="model_estate_property"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Window Action for Estate Property -->
+        <record id="action_estate_property" model="ir.actions.act_window">
+            <field name="name">Properties</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <!-- Action for Property Type -->
+        <record id="action_estate_property_type" model="ir.actions.act_window">
+            <field name="name">Property Types</field>
+            <field name="res_model">estate.property.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+     <!-- Window Action for Estate Property with Filter for Sales Agent or Property Manager -->
+        <record id="action_estate_property_filtered" model="ir.actions.act_window">
+            <field name="name">Estate Properties</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_estate_property_tree"/>
+            <field name="domain">[('|', ('sales_agent_id', '=', user.id), ('user_has_groups', '=', 'module_name.group_property_manager'))]</field>
+        </record>
+
+    </data>
+</odoo>

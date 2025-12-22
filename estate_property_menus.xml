@@ -1,0 +1,26 @@
+<odoo>
+    <!-- Top-level Menu: Real Estate -->
+    <menuitem id="estate_menu" name="Real Estate" sequence="10"/>
+
+    <!-- Submenu: Properties under Real Estate -->
+    <menuitem id="estate_properties_menu" name="Properties" parent="estate_menu" action="action_estate_property" sequence="20"/>
+    
+    <!-- Property Types Submenu -->
+    <menuitem id="property_type_menu" name="Property Types" parent="estate_menu" action="action_estate_property_type" sequence="30"/>
+
+    <!-- Action to open the wizard -->
+    <record id="action_print_property_wizard" model="ir.actions.act_window">
+        <field name="name">Property Report Wizard</field>
+        <field name="res_model">print.property.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Submenu item -->
+    <menuitem id="menu_print_property_wizard"
+              name="Report"
+              parent="estate_menu"
+              action="action_print_property_wizard"
+              sequence="40"/>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+estate_property_type_property_manager_access,property.manager access on estate.property.type,model_estate_property_type,group_property_manager,1,1,1,1
+access_print_properties_wizard_user,Access Print Properties Wizard User,model_print_property_wizard,base.group_user,1,1,1,1
+estate_property_manager_access,Property Manager Estate Property Access,model_estate_property,group_property_manager,1,1,1,1

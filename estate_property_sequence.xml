@@ -1,0 +1,7 @@
+<odoo>
+    <!-- Define Sequence for Property Code -->
+    <record id="seq_estate_property_code" model="ir.sequence">
+        <field name="name">Estate Property Code</field>
+        <field name="code">estate.property.code</field>
+    </record>
+</odoo>
