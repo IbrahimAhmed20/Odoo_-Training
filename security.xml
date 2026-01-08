@@ -1,42 +1,46 @@
 
 <odoo>
+    <data>
 
-   <!-- Category -->
-    <record id="crm_lead_access_category" model="ir.module.category">
-        <field name="name">CRM Lead</field>
-    </record>
+        <!-- Security Group "Property Manager" -->
+        <record id="group_property_manager" model="res.groups">
+            <field name="name">Property Manager</field>
+        </record>
 
-    <!-- Groups -->
-    <record id="crm_lead_group_manager" model="res.groups">
-        <field name="name">Manager</field>
-        <field name="category_id" ref="crm_lead_access_category"/>
-    </record>
+        <!-- Read and Write Access Rights for "User" on estate.property -->
+        <record id="estate_property_user_access" model="ir.model.access">
+            <field name="name">estate.property user access</field>
+            <field name="model_id" ref="model_estate_property"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
 
-    <record id="crm_lead_group_user" model="res.groups">
-        <field name="name">User</field>
-        <field name="category_id" ref="crm_lead_access_category"/>
-    </record>
+        <!-- Window Action for Estate Property -->
+        <record id="action_estate_property" model="ir.actions.act_window">
+            <field name="name">Properties</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
 
-<record id="rule_crm_lead_admin_only" model="ir.rule">
-    <field name="name">CRM Lead: Admin Only</field>
-    <field name="model_id" ref="crm.model_crm_lead"/>
-    <field name="domain_force">[('user_test', '=', 'admin')]</field>
-    <field name="groups" eval="[(4, ref('crm_custom.crm_lead_group_manager'))]"/>
-    <field name="perm_read" eval="True"/>
-    <field name="perm_write" eval="True"/>
-    <field name="perm_create" eval="True"/>
-    <field name="perm_unlink" eval="True"/>
-</record>
+        <!-- Action for Property Type -->
+        <record id="action_estate_property_type" model="ir.actions.act_window">
+            <field name="name">Property Types</field>
+            <field name="res_model">estate.property.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+     <!-- Window Action for Estate Property with Filter for Sales Agent or Property Manager -->
+        <record id="action_estate_property_filtered" model="ir.actions.act_window">
+            <field name="name">Estate Properties</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_estate_property_tree"/>
+            <field name="domain">[('|', ('sales_agent_id', '=', user.id), ('user_has_groups', '=', 'module_name.group_property_manager'))]</field>
+        </record>
 
-<record id="rule_crm_lead_demo_only" model="ir.rule">
-    <field name="name">CRM Lead: Demo Only</field>
-    <field name="model_id" ref="crm.model_crm_lead"/>
-    <field name="domain_force">[('user_test', '=', 'demo')]</field>
-    <field name="groups" eval="[(4, ref('crm_custom.crm_lead_group_user'))]"/>
-    <field name="perm_read" eval="True"/>
-    <field name="perm_write" eval="False"/>
-    <field name="perm_create" eval="False"/>
-    <field name="perm_unlink" eval="False"/>
-</record>
- 
+    </data>
 </odoo>

@@ -40,31 +40,17 @@ class Accesstoken(http.Controller):
          response = {'status': 'error', 'message': str(e)}
         return response
     
-    @http.route('/api/create_lead', type='json', methods=['POST'], csrf=False)
-    def create_lead(self, **kw):
-        name = kw.get('name')
-        email = kw.get('email')
-        phone = kw.get('phone')
-        user_test = kw.get('user_test')
-        user_id = request.uid
-        user_obj = request.env['res.users'].sudo().search([('id', '=', user_id)])
-        
-        vals = {
-            'name': name,
-            'email_from': email,
-            'phone': phone,
-            'user_test': user_test,
-        }
-        
-        new_lead = request.env['crm.lead'].with_user(user_obj).create(vals)
-        args = {'success': True, 'code':200, 'message':'Lead created successfully..', 'id': new_lead.id}
-        return args
-    
-    @http.route('/api/update_lead', type='json', auth='user')
-    def update_lead(self, **kw):
-        lead = request.env['crm.lead'].sudo().search([('id', '=', kw['id'])])
-        if lead:
-            lead.sudo().write(kw)
-            args = {'success': True, 'code':200, 'message':'Lead updated..', 'Stage Name': lead.stage_id.name}
-            return args
-       
+
+class PropertyApiController(http.Controller):
+
+    @http.route('/api/v1/properties',type='json',auth='public',methods=['GET'],csrf=False)
+    def get_properties(self):
+        # Search for properties available on the web
+        properties = request.env['estate.property'].sudo().search([
+            ('available_on_web', '=', True)
+        ])
+
+        # Read all available fields
+        data = properties.read()
+
+        return data
